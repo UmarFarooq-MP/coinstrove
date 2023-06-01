@@ -10,6 +10,19 @@ The backend code provides the following functionality:
 - Compare the prices across exchanges and identify the exchange with the lowest price.
 - Provide an API endpoint to retrieve the lowest price of a coin for a given exchange.
 
+## Project Structure
+
+The backend code follows the hexagonal architecture design pattern, also known as the ports and adapters architecture. The project structure is organized as follows:
+
+- `cmd/`: Contains the entry point(s) for the application.
+- `internal/`: Contains the core implementation of the application following the hexagonal architecture.
+  - `app/`: Implements the application logic, use cases, and business rules.
+  - `domain/`: Defines the domain models and interfaces.
+  - `infrastructure/`: Implements the adapters and infrastructure code (e.g., external API clients, database access).
+- `api/`: Contains the API handlers and routes for exposing the functionality to clients.
+- `pkg/`: Contains reusable packages and utilities.
+- `scripts/`: Contains scripts for building, testing, and other project-related tasks.
+
 ## Supported Exchanges
 
 The backend currently supports the following cryptocurrency exchanges:
