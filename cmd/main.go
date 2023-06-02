@@ -1,11 +1,19 @@
 package main
 
 import (
-	"coinscience/pkg/http"
-	"fmt"
+	"coinscience/internal/core/ports"
+	"coinscience/internal/core/services/realtimeprice/binance"
+	gate_io "coinscience/internal/core/services/realtimeprice/gate.io"
+	"coinscience/repositories/apirepository"
 )
 
 func main() {
-	client := http.NewHttpClientWithTimeout(2)
-	fmt.Println(client.Get("https://data.gateapi.io/api2/1/ticker/eth_usdt"))
+	apiRepo := apirepository.NewAPIRepository()
+	var priceService []ports.PriceService
+	priceService = append(priceService, binance.NewBinanceService(apiRepo))
+	priceService = append(priceService, gate_io.NewGateIOService(apiRepo))
+
+	for _, value := range priceService {
+		value.GetThePrice()
+	}
 }
