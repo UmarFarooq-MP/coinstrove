@@ -3,7 +3,7 @@ package binance
 import (
 	"coinscience/consts"
 	"coinscience/internal/core/ports"
-	"fmt"
+	"log"
 )
 
 type newBinanceService struct {
@@ -19,7 +19,7 @@ func NewBinanceService(priceRepo ports.PriceRepository) ports.PriceService {
 
 func (repo *newBinanceService) GetThePrice() {
 	repo.data = repo.priceRepo.Get(consts.BINANCE)
-	fmt.Println(repo.data)
+	log.Println(repo.data)
 }
 
 func (repo *newBinanceService) Publish() {

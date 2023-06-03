@@ -3,7 +3,7 @@ package gate_io
 import (
 	"coinscience/consts"
 	"coinscience/internal/core/ports"
-	"fmt"
+	"log"
 )
 
 type newGateIOService struct {
@@ -19,7 +19,7 @@ func NewGateIOService(priceRepo ports.PriceRepository) ports.PriceService {
 
 func (repo *newGateIOService) GetThePrice() {
 	repo.data = repo.priceRepo.Get(consts.GATEIO)
-	fmt.Println(repo.data)
+	log.Println(repo.data)
 }
 
 func (repo *newGateIOService) Publish() {
