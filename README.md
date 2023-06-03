@@ -43,20 +43,14 @@ The backend code is written in Go and utilizes the following technologies:
 To use the backend code for the Coinscience project, follow these steps:
 
 1. Clone the repository: `git clone https://github.com/UmarFarooq-MP/coinscience`
-2. Install the necessary dependencies using a package manager like `go get`.
-3. Set up API keys for the supported exchanges (Binance, Coinmake, Gate.io) and configure them in the project.
-4. Build and run the Go application.
-5. Access the provided API endpoints to retrieve cryptocurrency prices and find the lowest price for a specific coin on different exchanges.
+2. Install the necessary dependencies using a package manager like `go mod tidy`.
+3. Run `docker-compose up -d` it will run zookeeper and kafka in the background.
+4. Build and run the application using `go run cmd/main.go`.
 
 ## API Endpoints
-
-The backend provides the following API endpoints:
-
 WORK IN PROGRESS
 
 ## Example Usage
-
-Here's an example of how to use the Coinscience backend API:
 WORK IN PROGRESS
 
 ## Contribution
