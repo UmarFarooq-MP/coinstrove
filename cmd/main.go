@@ -14,10 +14,8 @@ import (
 func getPriceAfterFiveSeconds(priceService []ports.PriceService) {
 	ticker := time.NewTicker(5 * time.Second)
 	for _ = range ticker.C {
-		log.Println("Getting Latest Prices")
 		for _, value := range priceService {
-			value.GetThePrice()
-			value.BroadCast()
+			go value.GetThePrice()
 		}
 	}
 }

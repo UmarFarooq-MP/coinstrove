@@ -21,6 +21,7 @@ func NewBinanceService(priceRepo ports.PriceRepository, broadcaster ports.BroadC
 
 func (binance *newBinanceService) GetThePrice() {
 	binance.data = binance.priceRepo.Get(consts.BINANCE)
+	binance.BroadCast()
 }
 
 func (binance *newBinanceService) BroadCast() {
