@@ -3,25 +3,25 @@ package gate_io
 import (
 	"coinscience/consts"
 	"coinscience/internal/core/ports"
-	"log"
 )
 
 type newGateIOService struct {
-	priceRepo ports.PriceRepository
-	data      []map[string]interface{}
+	priceRepo        ports.PriceRepository
+	broadcastHandler ports.BroadCastHandler
+	data             []map[string]interface{}
 }
 
-func NewGateIOService(priceRepo ports.PriceRepository) ports.PriceService {
+func NewGateIOService(priceRepo ports.PriceRepository, broadcaster ports.BroadCastHandler) ports.PriceService {
 	return &newGateIOService{
-		priceRepo: priceRepo,
+		priceRepo:        priceRepo,
+		broadcastHandler: broadcaster,
 	}
 }
 
-func (repo *newGateIOService) GetThePrice() {
-	repo.data = repo.priceRepo.Get(consts.GATEIO)
-	log.Println(repo.data)
+func (gateio *newGateIOService) GetThePrice() {
+	gateio.data = gateio.priceRepo.Get(consts.GATEIO)
 }
 
-func (repo *newGateIOService) Publish() {
-
+func (gateio *newGateIOService) BroadCast() {
+	gateio.broadcastHandler.BroadCast(gateio.data)
 }

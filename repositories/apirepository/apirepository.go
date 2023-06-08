@@ -47,7 +47,3 @@ func (repo *apirepository) Get(exchange consts.EXCHANGE) []map[string]interface{
 	}
 	return responseMap
 }
-
-func (repo *apirepository) Publish() {
-	//TODO::
-}
