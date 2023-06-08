@@ -20,6 +20,7 @@ func NewGateIOService(priceRepo ports.PriceRepository, broadcaster ports.BroadCa
 
 func (gateio *newGateIOService) GetThePrice() {
 	gateio.data = gateio.priceRepo.Get(consts.GATEIO)
+	gateio.BroadCast()
 }
 
 func (gateio *newGateIOService) BroadCast() {

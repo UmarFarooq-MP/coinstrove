@@ -2,7 +2,6 @@ package websocket
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/gorilla/websocket"
 	"log"
 	"net/http"
@@ -31,17 +30,6 @@ func NewHandler() *Handler {
 func (h *Handler) BroadCast(data []map[string]interface{}) {
 
 	for client := range h.clients {
-		fmt.Println("Time to broadcast bitch")
-		//_, _, err := client.connection.ReadMessage()
-		//if err != nil {
-		//	if websocket.IsUnexpectedCloseError(err, websocket.CloseGoingAway, websocket.CloseAbnormalClosure) {
-		//		log.Printf("Client Disconnected %v", err)
-		//		h.removeClient(client)
-		//	} else {
-		//		return
-		//	}
-		//}
-
 		encodedData, err := json.Marshal(data)
 		if err != nil {
 			log.Fatalf("error while encoding data %v", err)
