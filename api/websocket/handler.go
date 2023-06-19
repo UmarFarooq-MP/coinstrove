@@ -1,6 +1,7 @@
 package websocket
 
 import (
+	"coinscience/internal/core/domain"
 	"encoding/json"
 	"github.com/gorilla/websocket"
 	"log"
@@ -27,8 +28,9 @@ func NewHandler() *Handler {
 	}
 }
 
-func (h *Handler) BroadCast(data []map[string]interface{}) {
-
+func (h *Handler) BroadCast(data domain.Response) {
+	h.Lock()
+	defer h.Unlock()
 	for client := range h.clients {
 		encodedData, err := json.Marshal(data)
 		if err != nil {

@@ -2,13 +2,14 @@ package binance
 
 import (
 	"coinscience/consts"
+	"coinscience/internal/core/domain"
 	"coinscience/internal/core/ports"
 	"log"
 )
 
 type newBinanceService struct {
 	priceRepo        ports.PriceRepository
-	data             []map[string]interface{}
+	data             domain.Response
 	broadcastHandler ports.BroadCastHandler
 }
 
