@@ -44,7 +44,7 @@ To use the backend code for the Coinscience project, follow these steps:
 
 1. Clone the repository: `git clone https://github.com/UmarFarooq-MP/coinscience`
 2. Install the necessary dependencies using a package manager like `go mod tidy`.
-3. Run `docker-compose up -d` it will run zookeeper and kafka in the background.
+3. Run `docker-compose up -d` to up rabbitmttq in dockerize environment.
 4. Build and run the application using `go run cmd/main.go`.
 
 ## API Endpoints
