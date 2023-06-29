@@ -5,4 +5,6 @@ type PriceService interface {
 	GetThePrice()
 	// BroadCast will broadcast the latest price
 	BroadCast()
+	// WriteToQue will write the price to que
+	WriteToQue()
 }
