@@ -1,4 +1,4 @@
-module coinscience
+module coinstrove
 
 go 1.18
 
