@@ -1,6 +1,6 @@
 package ports
 
-import "coinscience/internal/core/domain"
+import "coinstrove/internal/core/domain"
 
 type Publisher interface {
 	Publish(data domain.Response)

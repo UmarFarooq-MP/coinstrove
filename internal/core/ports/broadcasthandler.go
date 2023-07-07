@@ -1,6 +1,6 @@
 package ports
 
-import "coinscience/internal/core/domain"
+import "coinstrove/internal/core/domain"
 
 type BroadCastHandler interface {
 	BroadCast(response domain.Response)

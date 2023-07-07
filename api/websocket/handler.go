@@ -1,7 +1,7 @@
 package websocket
 
 import (
-	"coinscience/internal/core/domain"
+	"coinstrove/internal/core/domain"
 	"encoding/json"
 	"github.com/gorilla/websocket"
 	"log"

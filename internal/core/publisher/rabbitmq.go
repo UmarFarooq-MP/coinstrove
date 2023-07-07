@@ -1,8 +1,8 @@
 package publisher
 
 import (
-	"coinscience/internal/core/domain"
-	"coinscience/internal/core/ports"
+	"coinstrove/internal/core/domain"
+	"coinstrove/internal/core/ports"
 	"encoding/json"
 	"log"
 

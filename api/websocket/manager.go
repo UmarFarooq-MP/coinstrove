@@ -1,8 +1,8 @@
 package websocket
 
 import (
-	"coinscience/internal/core/domain"
-	"coinscience/internal/core/ports"
+	"coinstrove/internal/core/domain"
+	"coinstrove/internal/core/ports"
 )
 
 type broadCastManager struct {

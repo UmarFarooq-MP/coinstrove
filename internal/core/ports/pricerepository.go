@@ -1,8 +1,8 @@
 package ports
 
 import (
-	"coinscience/consts"
-	"coinscience/internal/core/domain"
+	"coinstrove/consts"
+	"coinstrove/internal/core/domain"
 )
 
 type PriceRepository interface {

@@ -1,10 +1,10 @@
 package apirepository
 
 import (
-	"coinscience/consts"
-	"coinscience/internal/core/domain"
-	"coinscience/internal/core/ports"
-	"coinscience/pkg/http"
+	"coinstrove/consts"
+	"coinstrove/internal/core/domain"
+	"coinstrove/internal/core/ports"
+	"coinstrove/pkg/http"
 )
 
 type apirepository struct {

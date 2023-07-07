@@ -1,9 +1,9 @@
 package binance
 
 import (
-	"coinscience/consts"
-	"coinscience/internal/core/domain"
-	"coinscience/internal/core/ports"
+	"coinstrove/consts"
+	"coinstrove/internal/core/domain"
+	"coinstrove/internal/core/ports"
 	"log"
 )
 

@@ -1,12 +1,12 @@
 package main
 
 import (
-	"coinscience/api/websocket"
-	"coinscience/internal/core/ports"
-	"coinscience/internal/core/publisher"
-	"coinscience/internal/core/services/realtimeprice/binance"
-	gate_io "coinscience/internal/core/services/realtimeprice/gate.io"
-	"coinscience/repositories/apirepository"
+	"coinstrove/api/websocket"
+	"coinstrove/internal/core/ports"
+	"coinstrove/internal/core/publisher"
+	"coinstrove/internal/core/services/realtimeprice/binance"
+	gate_io "coinstrove/internal/core/services/realtimeprice/gate.io"
+	"coinstrove/repositories/apirepository"
 	"log"
 	"net/http"
 	"time"
