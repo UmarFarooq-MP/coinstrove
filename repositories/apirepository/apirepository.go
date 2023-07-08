@@ -25,7 +25,7 @@ func (repo *apirepository) Get(exchange consts.EXCHANGE) domain.Response {
 		if err == nil {
 			responseMap.Data.Currencies = append(responseMap.Data.Currencies, domain.Currency{
 				Name:  "BTC",
-				Price: GetKrakenPrice(resp),
+				Price: GetKrakenPriceBTC(resp),
 			})
 		} else {
 			responseMap.ErrorMessage = err.Error()
@@ -35,7 +35,7 @@ func (repo *apirepository) Get(exchange consts.EXCHANGE) domain.Response {
 		if err == nil {
 			responseMap.Data.Currencies = append(responseMap.Data.Currencies, domain.Currency{
 				Name:  "ETH",
-				Price: GetKrakenPrice(resp),
+				Price: GetKrakenETH(resp),
 			})
 		} else {
 			responseMap.ErrorMessage = err.Error()
