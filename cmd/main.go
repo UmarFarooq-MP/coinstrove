@@ -6,6 +6,7 @@ import (
 	"coinstrove/internal/core/publisher"
 	"coinstrove/internal/core/services/realtimeprice/binance"
 	gate_io "coinstrove/internal/core/services/realtimeprice/gate.io"
+	"coinstrove/internal/core/services/realtimeprice/kraken"
 	"coinstrove/repositories/apirepository"
 	"log"
 	"net/http"
@@ -47,6 +48,7 @@ func main() {
 	priceService := []ports.PriceService{
 		binance.NewBinanceService(apiRepo, broadCastManager, quePublisher),
 		gate_io.NewGateIOService(apiRepo, broadCastManager, quePublisher),
+		kraken.NewKrakenService(apiRepo, broadCastManager, quePublisher),
 	}
 
 	// WebSocket Endpoints

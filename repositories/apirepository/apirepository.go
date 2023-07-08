@@ -20,6 +20,28 @@ func NewAPIRepository() ports.PriceRepository {
 func (repo *apirepository) Get(exchange consts.EXCHANGE) domain.Response {
 	var responseMap domain.Response
 	switch exchange {
+	case consts.KRAKEN:
+		resp, err := repo.client.Get("https://api.kraken.com/0/public/Ticker?pair=BTCUSDT")
+		if err == nil {
+			responseMap.Data.Currencies = append(responseMap.Data.Currencies, domain.Currency{
+				Name:  "BTC",
+				Price: GetKrakenPrice(resp),
+			})
+		} else {
+			responseMap.ErrorMessage = err.Error()
+		}
+
+		resp, err = repo.client.Get("https://api.kraken.com/0/public/Ticker?pair=ETHUSDT")
+		if err == nil {
+			responseMap.Data.Currencies = append(responseMap.Data.Currencies, domain.Currency{
+				Name:  "ETH",
+				Price: GetKrakenPrice(resp),
+			})
+		} else {
+			responseMap.ErrorMessage = err.Error()
+		}
+		responseMap.Data.ExchangeName = "Kraken"
+
 	case consts.BINANCE:
 		resp, err := repo.client.Get("https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT")
 		if err == nil {
