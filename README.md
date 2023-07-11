@@ -29,6 +29,7 @@ The backend currently supports the following cryptocurrency exchanges:
 
 - Binance
 - Gate.io
+- Kraken
 
 ## Technologies Used
 
