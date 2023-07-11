@@ -4,6 +4,7 @@ import (
 	"log"
 )
 
+// GetKrakenPriceBTC  is a function which is parsing the response
 func GetKrakenPriceBTC(resp map[string]interface{}) string {
 	if results, found := resp["result"].(map[string]interface{}); found {
 		if xbtusdt, ok := results["XBTUSDT"].(map[string]interface{}); ok {
@@ -16,15 +17,13 @@ func GetKrakenPriceBTC(resp map[string]interface{}) string {
 			}
 		}
 	} else {
-		//handle error - the map didn't contain this key
-		err := "Failed to extract price from KrakenPriceBTC"
-		log.Printf("%s\n", err)
+		log.Print("Failed to extract price from KrakenPriceBTC")
 		return ""
 	}
-
 	return ""
 }
 
+// GetKrakenPriceETH  is a function which is parsing the response
 func GetKrakenPriceETH(resp map[string]interface{}) string {
 	if results, found := resp["result"].(map[string]interface{}); found {
 		if ethusdt, ok := results["ETHUSDT"].(map[string]interface{}); ok {
@@ -37,11 +36,8 @@ func GetKrakenPriceETH(resp map[string]interface{}) string {
 			}
 		}
 	} else {
-		//handle error - the map didn't contain this key
-		err := "Failed to extract price from KrakenPriceETH"
-		log.Printf("%s\n", err)
+		log.Print("Failed to extract price from KrakenPriceETH")
 		return ""
 	}
-
 	return ""
 }
