@@ -44,7 +44,6 @@ func (h *Handler) BroadCast(data domain.Response) {
 }
 
 func (h *Handler) NewConnection(w http.ResponseWriter, r *http.Request) {
-	log.Println("New Connection")
 	conn, err := websocketUpGrader.Upgrade(w, r, nil)
 	if err != nil {
 		log.Println(err)
@@ -52,8 +51,6 @@ func (h *Handler) NewConnection(w http.ResponseWriter, r *http.Request) {
 	}
 	client := NewClient(conn, h)
 	h.addNewClient(client)
-	log.Println("New Client added")
-	log.Printf("Connect clients = %v", len(h.clients))
 }
 
 func (h *Handler) addNewClient(client *Client) {

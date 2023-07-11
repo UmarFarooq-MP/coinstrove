@@ -4,7 +4,6 @@ import (
 	"coinstrove/consts"
 	"coinstrove/internal/core/domain"
 	"coinstrove/internal/core/ports"
-	"log"
 )
 
 type newBinanceService struct {
@@ -29,7 +28,6 @@ func (binance *newBinanceService) GetThePrice() {
 }
 
 func (binance *newBinanceService) BroadCast() {
-	log.Println("BroadCasting binance data")
 	binance.broadcastHandler.BroadCast(binance.data)
 }
 
