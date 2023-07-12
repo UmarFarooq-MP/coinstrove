@@ -15,4 +15,5 @@ const (
 	BINANCE EXCHANGE = "BINANCE"
 	GATEIO           = "GATE.IO"
 	KRAKEN           = "KRAKEN"
+	BITPAY           = "BITPAY"
 )
