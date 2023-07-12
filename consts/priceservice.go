@@ -16,4 +16,5 @@ const (
 	GATEIO            = "GATE.IO"
 	KRAKEN            = "KRAKEN"
 	COINBASE          = "COINBASE"
+	BITPAY            = "BITPAY"
 )

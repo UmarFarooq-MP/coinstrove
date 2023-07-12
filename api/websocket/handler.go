@@ -31,6 +31,7 @@ func NewHandler() *Handler {
 func (h *Handler) BroadCast(data domain.Response) {
 	h.Lock()
 	defer h.Unlock()
+	log.Printf("connected clients = %v", len(h.clients))
 	for client := range h.clients {
 		encodedData, err := json.Marshal(data)
 		if err != nil {
@@ -44,7 +45,6 @@ func (h *Handler) BroadCast(data domain.Response) {
 }
 
 func (h *Handler) NewConnection(w http.ResponseWriter, r *http.Request) {
-	log.Println("New Connection")
 	conn, err := websocketUpGrader.Upgrade(w, r, nil)
 	if err != nil {
 		log.Println(err)
@@ -52,8 +52,6 @@ func (h *Handler) NewConnection(w http.ResponseWriter, r *http.Request) {
 	}
 	client := NewClient(conn, h)
 	h.addNewClient(client)
-	log.Println("New Client added")
-	log.Printf("Connect clients = %v", len(h.clients))
 }
 
 func (h *Handler) addNewClient(client *Client) {
@@ -63,8 +61,6 @@ func (h *Handler) addNewClient(client *Client) {
 }
 
 func (h *Handler) removeClient(client *Client) {
-	h.Lock()
-	defer h.Unlock()
 	if _, ok := h.clients[client]; ok {
 		client.connection.Close()
 		delete(h.clients, client)
