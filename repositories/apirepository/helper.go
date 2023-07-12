@@ -41,3 +41,9 @@ func GetKrakenPriceETH(resp map[string]interface{}) string {
 	}
 	return ""
 }
+
+// GetCoinBasePrice  is a function which is parsing the response
+func GetCoinBasePrice(resp map[string]interface{}) string {
+	data := resp["data"].(map[string]interface{})
+	return data["amount"].(string)
+}

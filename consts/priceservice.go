@@ -12,7 +12,8 @@ const (
 type EXCHANGE string
 
 const (
-	BINANCE EXCHANGE = "BINANCE"
-	GATEIO           = "GATE.IO"
-	KRAKEN           = "KRAKEN"
+	BINANCE  EXCHANGE = "BINANCE"
+	GATEIO            = "GATE.IO"
+	KRAKEN            = "KRAKEN"
+	COINBASE          = "COINBASE"
 )
