@@ -61,3 +61,9 @@ func GetBitPayPrice(resp map[string]interface{}) string {
 	}
 	return fmt.Sprintf("%v", price)
 }
+
+// GetCoinBasePrice  is a function which is parsing the response
+func GetCoinBasePrice(resp map[string]interface{}) string {
+	data := resp["data"].(map[string]interface{})
+	return data["amount"].(string)
+}

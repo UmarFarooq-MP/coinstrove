@@ -5,6 +5,7 @@ import (
 	"coinstrove/internal/core/ports"
 	"coinstrove/internal/core/publisher"
 	"coinstrove/internal/core/services/realtimeprice/binance"
+	"coinstrove/internal/core/services/realtimeprice/coinbase"
 	"coinstrove/internal/core/services/realtimeprice/bitpay"
 	gate_io "coinstrove/internal/core/services/realtimeprice/gate.io"
 	"coinstrove/internal/core/services/realtimeprice/kraken"
@@ -50,6 +51,7 @@ func main() {
 		binance.NewBinanceService(apiRepo, broadCastManager, quePublisher),
 		gate_io.NewGateIOService(apiRepo, broadCastManager, quePublisher),
 		kraken.NewKrakenService(apiRepo, broadCastManager, quePublisher),
+		coinbase.NewCoinBaseService(apiRepo, broadCastManager, quePublisher),
 		bitpay.NewBitPayService(apiRepo, broadCastManager, quePublisher),
 	}
 
