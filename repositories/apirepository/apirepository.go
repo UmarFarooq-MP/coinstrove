@@ -91,7 +91,7 @@ func (repo *apirepository) Get(exchange consts.EXCHANGE) domain.Response {
 		if err == nil {
 			responseMap.Data.Currencies = append(responseMap.Data.Currencies, domain.Currency{
 				Name:  "BTC",
-				Price: resp["price"].(string),
+				Price: GetPriceForBinance(resp),
 			})
 		} else {
 			responseMap.ErrorMessage = err.Error()
@@ -101,7 +101,7 @@ func (repo *apirepository) Get(exchange consts.EXCHANGE) domain.Response {
 		if err == nil {
 			responseMap.Data.Currencies = append(responseMap.Data.Currencies, domain.Currency{
 				Name:  "ETH",
-				Price: resp["price"].(string),
+				Price: GetPriceForBinance(repo),
 			})
 		} else {
 			responseMap.ErrorMessage = err.Error()
@@ -115,7 +115,7 @@ func (repo *apirepository) Get(exchange consts.EXCHANGE) domain.Response {
 			//in response, so we can detect the coin name
 			responseMap.Data.Currencies = append(responseMap.Data.Currencies, domain.Currency{
 				Name:  "BTC",
-				Price: resp["last"].(string),
+				Price: GetPriceForGateIO(resp),
 			})
 		} else {
 			responseMap.ErrorMessage = err.Error()
@@ -127,7 +127,7 @@ func (repo *apirepository) Get(exchange consts.EXCHANGE) domain.Response {
 			//in response, so we can detect the coin name
 			responseMap.Data.Currencies = append(responseMap.Data.Currencies, domain.Currency{
 				Name:  "ETH",
-				Price: resp["last"].(string),
+				Price: GetPriceForGateIO(resp),
 			})
 		} else {
 			responseMap.ErrorMessage = err.Error()

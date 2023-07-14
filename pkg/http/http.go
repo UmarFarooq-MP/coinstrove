@@ -3,6 +3,7 @@ package http
 import (
 	"encoding/json"
 	"github.com/imroc/req/v3"
+	"log"
 	"time"
 )
 
@@ -10,7 +11,7 @@ type Client struct {
 	client *req.Client //req.DevMode()
 }
 
-func (c *Client) Get(url string) (map[string]interface{}, error) {
+func (c *Client) Get(url string) (interface{}, error) {
 
 	resp, err := c.client.R(). // Use R() to create a request.
 					Get(url)
@@ -18,8 +19,12 @@ func (c *Client) Get(url string) (map[string]interface{}, error) {
 		return nil, err
 	}
 
-	var data map[string]interface{}
-	json.NewDecoder(resp.Body).Decode(&data)
+	var data interface{}
+	err = json.NewDecoder(resp.Body).Decode(&data)
+	if err != nil {
+		log.Println("Error while Decoding the response")
+		return nil, err
+	}
 	return data, nil
 }
 
