@@ -6,8 +6,13 @@ import (
 )
 
 // GetKrakenPriceBTC  is a function which is parsing the response
-func GetKrakenPriceBTC(resp map[string]interface{}) string {
-	if results, found := resp["result"].(map[string]interface{}); found {
+func GetKrakenPriceBTC(resp interface{}) string {
+	result, ok := resp.(map[string]interface{})
+	if !ok {
+		log.Println("GetKrakenPriceBTC Error occurred while converting response into map")
+		return ""
+	}
+	if results, found := result["result"].(map[string]interface{}); found {
 		if xbtusdt, ok := results["XBTUSDT"].(map[string]interface{}); ok {
 			if a, ok := xbtusdt["a"].([]interface{}); ok {
 				if len(a) > 0 {
@@ -25,8 +30,15 @@ func GetKrakenPriceBTC(resp map[string]interface{}) string {
 }
 
 // GetKrakenPriceETH  is a function which is parsing the response
-func GetKrakenPriceETH(resp map[string]interface{}) string {
-	if results, found := resp["result"].(map[string]interface{}); found {
+func GetKrakenPriceETH(resp interface{}) string {
+
+	result, ok := resp.(map[string]interface{})
+	if !ok {
+		log.Println("GetKrakenPriceETH Error occurred while converting response into map")
+		return ""
+	}
+
+	if results, found := result["result"].(map[string]interface{}); found {
 		if ethusdt, ok := results["ETHUSDT"].(map[string]interface{}); ok {
 			if a, ok := ethusdt["a"].([]interface{}); ok {
 				if len(a) > 0 {
@@ -44,8 +56,15 @@ func GetKrakenPriceETH(resp map[string]interface{}) string {
 }
 
 // GetBitPayPrice  is a function which is parsing the response to fetch the price
-func GetBitPayPrice(resp map[string]interface{}) string {
-	result, ok := resp["result"].([]interface{})
+func GetBitPayPrice(resp interface{}) string {
+
+	results, ok := resp.(map[string]interface{})
+	if !ok {
+		log.Println("GetKrakenPriceETH Error occurred while converting response into map")
+		return ""
+	}
+
+	result, ok := results["result"].([]interface{})
 	if !ok || len(result) == 0 {
 		return ""
 	}
@@ -61,20 +80,35 @@ func GetBitPayPrice(resp map[string]interface{}) string {
 	}
 	return fmt.Sprintf("%v", price)
 }
-func GetBitfinexPrice(resp map[string]interface{}) string {
-	result, ok := resp["result"].([]interface{})
-	if !ok || len(result) == 0 {
+
+func GetPriceForGateIO(resp interface{}) string {
+	results, ok := resp.(map[string]interface{})
+	if !ok {
+		log.Println("GetKrakenPriceETH Error occurred while converting response into map")
+		return ""
+	}
+	return results["last"].(string)
+}
+
+func GetPriceForBinance(resp interface{}) string {
+	results, ok := resp.(map[string]interface{})
+	if !ok {
+		log.Println("GetKrakenPriceETH Error occurred while converting response into map")
+		return ""
+	}
+	return results["price"].(string)
+}
+
+func GetBitfinexPrice(resp interface{}) string {
+
+	dataSlice, ok := resp.([]interface{})
+	if !ok || len(dataSlice) < 3 {
 		return ""
 	}
 
-	firstTrade, ok := result[0].(map[string]interface{})
+	thirdValue, ok := dataSlice[2].(float64)
 	if !ok {
 		return ""
 	}
-
-	price, ok := firstTrade["price"].(float64)
-	if !ok {
-		return ""
-	}
-	return fmt.Sprintf("%v", price)
+	return fmt.Sprintf("%g", thirdValue)
 }

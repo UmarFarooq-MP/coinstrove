@@ -10,7 +10,7 @@ type Client struct {
 	client *req.Client //req.DevMode()
 }
 
-func (c *Client) Get(url string) (map[string]interface{}, error) {
+func (c *Client) Get(url string) (interface{}, error) {
 
 	resp, err := c.client.R(). // Use R() to create a request.
 					Get(url)
@@ -18,7 +18,7 @@ func (c *Client) Get(url string) (map[string]interface{}, error) {
 		return nil, err
 	}
 
-	var data map[string]interface{}
+	var data interface{}
 	json.NewDecoder(resp.Body).Decode(&data)
 	return data, nil
 }
