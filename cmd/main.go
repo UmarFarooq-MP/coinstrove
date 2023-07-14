@@ -5,6 +5,7 @@ import (
 	"coinstrove/internal/core/ports"
 	"coinstrove/internal/core/publisher"
 	"coinstrove/internal/core/services/realtimeprice/binance"
+	"coinstrove/internal/core/services/realtimeprice/bitfinex"
 	"coinstrove/internal/core/services/realtimeprice/bitpay"
 	gate_io "coinstrove/internal/core/services/realtimeprice/gate.io"
 	"coinstrove/internal/core/services/realtimeprice/kraken"
@@ -51,6 +52,7 @@ func main() {
 		gate_io.NewGateIOService(apiRepo, broadCastManager, quePublisher),
 		kraken.NewKrakenService(apiRepo, broadCastManager, quePublisher),
 		bitpay.NewBitPayService(apiRepo, broadCastManager, quePublisher),
+		bitfinex.NewBitfinexService(apiRepo, broadCastManager, quePublisher),
 	}
 
 	// WebSocket Endpoints

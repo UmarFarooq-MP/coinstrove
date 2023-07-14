@@ -61,3 +61,20 @@ func GetBitPayPrice(resp map[string]interface{}) string {
 	}
 	return fmt.Sprintf("%v", price)
 }
+func GetBitfinexPrice(resp map[string]interface{}) string {
+	result, ok := resp["result"].([]interface{})
+	if !ok || len(result) == 0 {
+		return ""
+	}
+
+	firstTrade, ok := result[0].(map[string]interface{})
+	if !ok {
+		return ""
+	}
+
+	price, ok := firstTrade["price"].(float64)
+	if !ok {
+		return ""
+	}
+	return fmt.Sprintf("%v", price)
+}

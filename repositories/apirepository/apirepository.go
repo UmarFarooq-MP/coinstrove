@@ -5,6 +5,7 @@ import (
 	"coinstrove/internal/core/domain"
 	"coinstrove/internal/core/ports"
 	"coinstrove/pkg/http"
+	"fmt"
 )
 
 type apirepository struct {
@@ -20,6 +21,28 @@ func NewAPIRepository() ports.PriceRepository {
 func (repo *apirepository) Get(exchange consts.EXCHANGE) domain.Response {
 	var responseMap domain.Response
 	switch exchange {
+	case consts.BITFINEX:
+		resp, err := repo.client.Get("https://api-pub.bitfinex.com/v2/ticker/tBTCUSD")
+		if err == nil {
+			responseMap.Data.Currencies = append(responseMap.Data.Currencies, domain.Currency{
+				Name:  "BTC",
+				Price: GetBitfinexPrice(resp),
+			})
+		} else {
+			fmt.Printf("fucked %v", err)
+			responseMap.ErrorMessage = err.Error()
+		}
+
+		resp, err = repo.client.Get("https://api-pub.bitfinex.com/v2/ticker/tETHUSD")
+		if err == nil {
+			responseMap.Data.Currencies = append(responseMap.Data.Currencies, domain.Currency{
+				Name:  "ETH",
+				Price: GetBitfinexPrice(resp),
+			})
+		} else {
+			responseMap.ErrorMessage = err.Error()
+		}
+		responseMap.Data.ExchangeName = "Bitfinex"
 	case consts.BITPAY:
 		resp, err := repo.client.Get("https://api.bybit.com/public/linear/recent-trading-records?symbol=BTCUSDT&limit=1")
 		if err == nil {
