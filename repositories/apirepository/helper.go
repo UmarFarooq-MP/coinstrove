@@ -81,6 +81,7 @@ func GetBitPayPrice(resp interface{}) string {
 	return fmt.Sprintf("%v", price)
 }
 
+
 func GetPriceForGateIO(resp interface{}) string {
 	results, ok := resp.(map[string]interface{})
 	if !ok {
@@ -111,4 +112,10 @@ func GetBitfinexPrice(resp interface{}) string {
 		return ""
 	}
 	return fmt.Sprintf("%g", thirdValue)
+}
+
+// GetCoinBasePrice  is a function which is parsing the response
+func GetCoinBasePrice(resp map[string]interface{}) string {
+	data := resp["data"].(map[string]interface{})
+	return data["amount"].(string)
 }
