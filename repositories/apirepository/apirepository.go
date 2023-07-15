@@ -101,7 +101,7 @@ func (repo *apirepository) Get(exchange consts.EXCHANGE) domain.Response {
 		if err == nil {
 			responseMap.Data.Currencies = append(responseMap.Data.Currencies, domain.Currency{
 				Name:  "ETH",
-				Price: GetPriceForBinance(repo),
+				Price: GetPriceForBinance(resp),
 			})
 		} else {
 			responseMap.ErrorMessage = err.Error()
