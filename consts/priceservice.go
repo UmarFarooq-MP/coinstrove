@@ -17,4 +17,5 @@ const (
 	KRAKEN            = "KRAKEN"
 	COINBASE          = "COINBASE"
 	BITPAY            = "BITPAY"
+	BITFINEX          = "BITFINEX"
 )

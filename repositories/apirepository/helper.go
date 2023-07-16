@@ -78,6 +78,19 @@ func GetBitPayPrice(resp interface{}) string {
 	}
 	return fmt.Sprintf("%v", price)
 }
+func GetBitfinexPrice(resp interface{}) string {
+
+	dataSlice, ok := resp.([]interface{})
+	if !ok || len(dataSlice) < 3 {
+		return ""
+	}
+
+	thirdValue, ok := dataSlice[2].(float64)
+	if !ok {
+		return ""
+	}
+	return fmt.Sprintf("%g", thirdValue)
+}
 
 // GetCoinBasePrice  is a function which is parsing the response
 func GetCoinBasePrice(resp interface{}) string {
