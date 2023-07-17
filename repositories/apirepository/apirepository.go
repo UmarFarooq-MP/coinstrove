@@ -5,7 +5,6 @@ import (
 	"coinstrove/internal/core/domain"
 	"coinstrove/internal/core/ports"
 	"coinstrove/pkg/http"
-	"fmt"
 )
 
 type apirepository struct {
@@ -29,7 +28,6 @@ func (repo *apirepository) Get(exchange consts.EXCHANGE) domain.Response {
 				Price: GetBitfinexPrice(resp),
 			})
 		} else {
-			fmt.Printf("fucked %v", err)
 			responseMap.ErrorMessage = err.Error()
 		}
 

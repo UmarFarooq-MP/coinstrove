@@ -78,6 +78,8 @@ func GetBitPayPrice(resp interface{}) string {
 	}
 	return fmt.Sprintf("%v", price)
 }
+
+// GetBitfinexPrice  is a function which is parsing the response to fetch the price
 func GetBitfinexPrice(resp interface{}) string {
 
 	dataSlice, ok := resp.([]interface{})
