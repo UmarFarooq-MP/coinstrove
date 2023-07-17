@@ -9,6 +9,7 @@ import (
 	"coinstrove/internal/core/services/realtimeprice/bitpay"
 	"coinstrove/internal/core/services/realtimeprice/coinbase"
 	gate_io "coinstrove/internal/core/services/realtimeprice/gate.io"
+	"coinstrove/internal/core/services/realtimeprice/huobi"
 	"coinstrove/internal/core/services/realtimeprice/kraken"
 	"coinstrove/repositories/apirepository"
 	"log"
@@ -55,6 +56,7 @@ func main() {
 		coinbase.NewCoinBaseService(apiRepo, broadCastManager, quePublisher),
 		bitpay.NewBitPayService(apiRepo, broadCastManager, quePublisher),
 		bitfinex.NewBitfinexService(apiRepo, broadCastManager, quePublisher),
+		huobi.NewHuobiService(apiRepo, broadCastManager, quePublisher),
 	}
 
 	// WebSocket Endpoints
