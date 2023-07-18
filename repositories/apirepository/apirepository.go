@@ -20,6 +20,27 @@ func NewAPIRepository() ports.PriceRepository {
 func (repo *apirepository) Get(exchange consts.EXCHANGE) domain.Response {
 	var responseMap domain.Response
 	switch exchange {
+	case consts.HUOBI:
+		resp, err := repo.client.Get("https://api.huobi.pro/market/trade?symbol=btcusdt")
+		if err == nil {
+			responseMap.Data.Currencies = append(responseMap.Data.Currencies, domain.Currency{
+				Name:  "BTC",
+				Price: GetHuobiPrice(resp),
+			})
+		} else {
+			responseMap.ErrorMessage = err.Error()
+		}
+
+		resp, err = repo.client.Get("https://api.huobi.pro/market/trade?symbol=ethusdt")
+		if err == nil {
+			responseMap.Data.Currencies = append(responseMap.Data.Currencies, domain.Currency{
+				Name:  "ETH",
+				Price: GetHuobiPrice(resp),
+			})
+		} else {
+			responseMap.ErrorMessage = err.Error()
+		}
+		responseMap.Data.ExchangeName = "Huobi"
 	case consts.BITFINEX:
 		resp, err := repo.client.Get("https://api-pub.bitfinex.com/v2/ticker/tBTCUSD")
 		if err == nil {
