@@ -10,6 +10,7 @@ import (
 	"coinstrove/internal/core/services/realtimeprice/coinbase"
 	gate_io "coinstrove/internal/core/services/realtimeprice/gate.io"
 	"coinstrove/internal/core/services/realtimeprice/kraken"
+	"coinstrove/internal/core/services/realtimeprice/kucoin"
 	"coinstrove/repositories/apirepository"
 	"log"
 	"net/http"
@@ -55,6 +56,7 @@ func main() {
 		coinbase.NewCoinBaseService(apiRepo, broadCastManager, quePublisher),
 		bitpay.NewBitPayService(apiRepo, broadCastManager, quePublisher),
 		bitfinex.NewBitfinexService(apiRepo, broadCastManager, quePublisher),
+		kucoin.NewKucoinService(apiRepo, broadCastManager, quePublisher),
 	}
 
 	// WebSocket Endpoints

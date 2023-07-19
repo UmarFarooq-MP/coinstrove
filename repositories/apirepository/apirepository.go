@@ -20,6 +20,27 @@ func NewAPIRepository() ports.PriceRepository {
 func (repo *apirepository) Get(exchange consts.EXCHANGE) domain.Response {
 	var responseMap domain.Response
 	switch exchange {
+	case consts.KUCOIN:
+		resp, err := repo.client.Get("https://api.kucoin.com/api/v1/market/orderbook/level1?symbol=BTC-USDT")
+		if err == nil {
+			responseMap.Data.Currencies = append(responseMap.Data.Currencies, domain.Currency{
+				Name:  "BTC",
+				Price: GetKucoinPrice(resp),
+			})
+		} else {
+			responseMap.ErrorMessage = err.Error()
+		}
+
+		resp, err = repo.client.Get("https://api.kucoin.com/api/v1/market/orderbook/level1?symbol=ETH-USDT")
+		if err == nil {
+			responseMap.Data.Currencies = append(responseMap.Data.Currencies, domain.Currency{
+				Name:  "ETH",
+				Price: GetKucoinPrice(resp),
+			})
+		} else {
+			responseMap.ErrorMessage = err.Error()
+		}
+		responseMap.Data.ExchangeName = "Kucoin"
 	case consts.BITFINEX:
 		resp, err := repo.client.Get("https://api-pub.bitfinex.com/v2/ticker/tBTCUSD")
 		if err == nil {
