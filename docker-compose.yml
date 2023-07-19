@@ -11,7 +11,14 @@ services:
       - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
     networks:
       - rabbitmq_go_net
-
+  datasvc:
+    build: .
+    ports:
+      - 8080:8080
+    networks:
+      - rabbitmq_go_net
+    depends_on:
+      - rabbitmq
 networks:
   rabbitmq_go_net:
     driver: bridge
