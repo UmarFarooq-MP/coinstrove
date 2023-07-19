@@ -18,5 +18,7 @@ const (
 	COINBASE          = "COINBASE"
 	BITPAY            = "BITPAY"
 	BITFINEX          = "BITFINEX"
+	HUOBI             = "HUOBI"
+	BITSTAMP          = "BITSTAMP"
 	KUCOIN            = "KUCOIN"
 )

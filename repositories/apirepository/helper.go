@@ -58,7 +58,7 @@ func GetKrakenPriceETH(resp interface{}) string {
 func GetBitPayPrice(resp interface{}) string {
 	results, ok := resp.(map[string]interface{})
 	if !ok {
-		log.Println("GetKrakenPriceETH Error occurred while converting response into map")
+		log.Println("GetBitPayPriceETH Error occurred while converting response into map")
 		return ""
 	}
 
@@ -119,6 +119,67 @@ func GetPriceForBinance(resp interface{}) string {
 		return ""
 	}
 	return results["price"].(string)
+}
+
+/*
+	func GetHuobiPrice(resp interface{}) string {
+		results, ok := resp.(map[string]interface{})
+		if !ok {
+			log.Println("GetHuobiPrice Error occurred while converting response into map")
+			return ""
+		}
+
+		data, ok := results["result"].([]interface{})
+		if !ok || len(data) == 0 {
+			return ""
+		}
+
+		price, ok := data[0].(map[string]interface{})
+		if !ok {
+			return ""
+		}
+
+		price, ok := ["price"].(float64)
+		if !ok {
+			return ""
+		}
+		return fmt.Sprintf("%v", price)
+	}
+*/
+func GetHuobiPrice(resp interface{}) string {
+	results, ok := resp.(map[string]interface{})
+	if !ok {
+		log.Println("GetHuobiPrice Error occurred while converting response into map")
+		return ""
+	}
+	if tick, found := results["tick"].(map[string]interface{}); found {
+
+		if data, ok := tick["data"].([]interface{}); ok {
+			if len(data) > 0 {
+				firstTrade, ok := data[0].(map[string]interface{})
+				if !ok {
+					log.Println("Error in GetHuobiPrice")
+					return ""
+				}
+				price, ok := firstTrade["price"].(float64)
+				if !ok {
+					log.Println("Error occurred while extracting price")
+					return ""
+				}
+				return fmt.Sprintf("%f", price)
+			}
+		}
+	}
+	return ""
+}
+
+func GetBitstampPrice(resp interface{}) string {
+	results, ok := resp.(map[string]interface{})
+	if !ok {
+		log.Println("GetPriceForBitstamp Error occurred while converting response into map")
+		return ""
+	}
+	return results["ask"].(string)
 }
 
 // GetKucoinPrice  is a function which is parsing the response

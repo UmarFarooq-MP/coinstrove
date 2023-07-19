@@ -41,6 +41,50 @@ func (repo *apirepository) Get(exchange consts.EXCHANGE) domain.Response {
 			responseMap.ErrorMessage = err.Error()
 		}
 		responseMap.Data.ExchangeName = "Kucoin"
+	case consts.BITSTAMP:
+
+		resp, err := repo.client.Get("https://www.bitstamp.net/api/v2/ticker/btcusd/")
+		if err == nil {
+			responseMap.Data.Currencies = append(responseMap.Data.Currencies, domain.Currency{
+				Name:  "BTC",
+				Price: GetBitstampPrice(resp),
+			})
+		} else {
+			responseMap.ErrorMessage = err.Error()
+		}
+
+		resp, err = repo.client.Get("https://www.bitstamp.net/api/v2/ticker/ethusd/")
+		if err == nil {
+			responseMap.Data.Currencies = append(responseMap.Data.Currencies, domain.Currency{
+				Name:  "ETH",
+				Price: GetBitstampPrice(resp),
+			})
+		} else {
+			responseMap.ErrorMessage = err.Error()
+		}
+		responseMap.Data.ExchangeName = "Bitstamp"
+
+	case consts.HUOBI:
+		resp, err := repo.client.Get("https://api.huobi.pro/market/trade?symbol=btcusdt")
+		if err == nil {
+			responseMap.Data.Currencies = append(responseMap.Data.Currencies, domain.Currency{
+				Name:  "BTC",
+				Price: GetHuobiPrice(resp),
+			})
+		} else {
+			responseMap.ErrorMessage = err.Error()
+		}
+
+		resp, err = repo.client.Get("https://api.huobi.pro/market/trade?symbol=ethusdt")
+		if err == nil {
+			responseMap.Data.Currencies = append(responseMap.Data.Currencies, domain.Currency{
+				Name:  "ETH",
+				Price: GetHuobiPrice(resp),
+			})
+		} else {
+			responseMap.ErrorMessage = err.Error()
+		}
+		responseMap.Data.ExchangeName = "Huobi"
 	case consts.BITFINEX:
 		resp, err := repo.client.Get("https://api-pub.bitfinex.com/v2/ticker/tBTCUSD")
 		if err == nil {
