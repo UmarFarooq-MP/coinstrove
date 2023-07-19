@@ -181,3 +181,21 @@ func GetBitstampPrice(resp interface{}) string {
 	}
 	return results["ask"].(string)
 }
+
+// GetKucoinPrice  is a function which is parsing the response
+func GetKucoinPrice(resp interface{}) string {
+	results, ok := resp.(map[string]interface{})
+	if !ok {
+		log.Println("GetKucoinPrice Error occurred while converting response into map")
+		return ""
+	}
+	if data, found := results["data"].(map[string]interface{}); found {
+		price, ok := data["price"].(string)
+		if !ok {
+			log.Println("GetKucoinPrice Error occurred")
+		}
+		return fmt.Sprintf("%s", price)
+
+	}
+	return ""
+}

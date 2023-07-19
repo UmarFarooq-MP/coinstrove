@@ -20,4 +20,5 @@ const (
 	BITFINEX          = "BITFINEX"
 	HUOBI             = "HUOBI"
 	BITSTAMP          = "BITSTAMP"
+	KUCOIN            = "KUCOIN"
 )

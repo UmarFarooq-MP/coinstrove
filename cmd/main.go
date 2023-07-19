@@ -12,6 +12,7 @@ import (
 	gate_io "coinstrove/internal/core/services/realtimeprice/gate.io"
 	"coinstrove/internal/core/services/realtimeprice/huobi"
 	"coinstrove/internal/core/services/realtimeprice/kraken"
+	"coinstrove/internal/core/services/realtimeprice/kucoin"
 	"coinstrove/repositories/apirepository"
 	"log"
 	"net/http"
@@ -59,6 +60,7 @@ func main() {
 		bitfinex.NewBitfinexService(apiRepo, broadCastManager, quePublisher),
 		bitstamp.NewBitstampService(apiRepo, broadCastManager, quePublisher),
 		huobi.NewHuobiService(apiRepo, broadCastManager, quePublisher),
+		kucoin.NewKucoinService(apiRepo, broadCastManager, quePublisher),
 	}
 
 	// WebSocket Endpoints
