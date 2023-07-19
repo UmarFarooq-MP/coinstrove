@@ -172,3 +172,12 @@ func GetHuobiPrice(resp interface{}) string {
 	}
 	return ""
 }
+
+func GetBitstampPrice(resp interface{}) string {
+	results, ok := resp.(map[string]interface{})
+	if !ok {
+		log.Println("GetPriceForBitstamp Error occurred while converting response into map")
+		return ""
+	}
+	return results["ask"].(string)
+}

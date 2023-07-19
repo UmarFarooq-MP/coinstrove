@@ -19,4 +19,5 @@ const (
 	BITPAY            = "BITPAY"
 	BITFINEX          = "BITFINEX"
 	HUOBI             = "HUOBI"
+	BITSTAMP          = "BITSTAMP"
 )

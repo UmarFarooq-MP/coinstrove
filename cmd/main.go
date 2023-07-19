@@ -7,6 +7,7 @@ import (
 	"coinstrove/internal/core/services/realtimeprice/binance"
 	"coinstrove/internal/core/services/realtimeprice/bitfinex"
 	"coinstrove/internal/core/services/realtimeprice/bitpay"
+	"coinstrove/internal/core/services/realtimeprice/bitstamp"
 	"coinstrove/internal/core/services/realtimeprice/coinbase"
 	gate_io "coinstrove/internal/core/services/realtimeprice/gate.io"
 	"coinstrove/internal/core/services/realtimeprice/huobi"
@@ -56,6 +57,7 @@ func main() {
 		coinbase.NewCoinBaseService(apiRepo, broadCastManager, quePublisher),
 		bitpay.NewBitPayService(apiRepo, broadCastManager, quePublisher),
 		bitfinex.NewBitfinexService(apiRepo, broadCastManager, quePublisher),
+		bitstamp.NewBitstampService(apiRepo, broadCastManager, quePublisher),
 		huobi.NewHuobiService(apiRepo, broadCastManager, quePublisher),
 	}
 
