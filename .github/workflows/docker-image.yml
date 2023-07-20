@@ -9,9 +9,7 @@ on:
 jobs:
 
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
     - name: docker login
@@ -24,4 +22,4 @@ jobs:
       run: docker build . --file Dockerfile --tag umarfw/coinstrove:$(date +%s)
       
     - name: Docker Push
-      run: docker push chamodshehanka/node-test
+      run: docker push umarfw/coinstrove
