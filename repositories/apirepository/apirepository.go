@@ -20,6 +20,27 @@ func NewAPIRepository() ports.PriceRepository {
 func (repo *apirepository) Get(exchange consts.EXCHANGE) domain.Response {
 	var responseMap domain.Response
 	switch exchange {
+	case consts.OKX:
+		resp, err := repo.client.Get("https://www.okx.com/api/v5/market/ticker?instId=BTC-USDT")
+		if err == nil {
+			responseMap.Data.Currencies = append(responseMap.Data.Currencies, domain.Currency{
+				Name:  "BTC",
+				Price: GetOkxPrice(resp),
+			})
+		} else {
+			responseMap.ErrorMessage = err.Error()
+		}
+
+		resp, err = repo.client.Get("https://www.okx.com/api/v5/market/ticker?instId=ETH-USDT")
+		if err == nil {
+			responseMap.Data.Currencies = append(responseMap.Data.Currencies, domain.Currency{
+				Name:  "ETH",
+				Price: GetOkxPrice(resp),
+			})
+		} else {
+			responseMap.ErrorMessage = err.Error()
+		}
+		responseMap.Data.ExchangeName = "Okx"
 	case consts.KUCOIN:
 		resp, err := repo.client.Get("https://api.kucoin.com/api/v1/market/orderbook/level1?symbol=BTC-USDT")
 		if err == nil {

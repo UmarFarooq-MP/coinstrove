@@ -21,4 +21,5 @@ const (
 	HUOBI             = "HUOBI"
 	BITSTAMP          = "BITSTAMP"
 	KUCOIN            = "KUCOIN"
+	OKX               = "OKX"
 )

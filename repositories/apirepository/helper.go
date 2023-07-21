@@ -29,6 +29,33 @@ func GetKrakenPriceBTC(resp interface{}) string {
 	return ""
 }
 
+func GetOkxPrice(resp interface{}) string {
+	results, ok := resp.(map[string]interface{})
+	if !ok {
+		log.Println("GetOkxPrice Error occurred while converting response into map")
+		return ""
+	}
+
+	if data, ok := results["data"].([]interface{}); ok {
+
+		if len(data) > 0 {
+			lastData, ok := data[0].(map[string]interface{})
+			if !ok {
+				log.Println("Error occurred while extracting latest data")
+				return ""
+			}
+			price, ok := lastData["last"].(string)
+			if !ok {
+				log.Println("Error occurred while extracting price")
+				return ""
+			}
+			return price
+		}
+	}
+
+	return ""
+}
+
 // GetKrakenPriceETH  is a function which is parsing the response
 func GetKrakenPriceETH(resp interface{}) string {
 	result, ok := resp.(map[string]interface{})
