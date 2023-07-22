@@ -13,6 +13,7 @@ import (
 	"coinstrove/internal/core/services/realtimeprice/huobi"
 	"coinstrove/internal/core/services/realtimeprice/kraken"
 	"coinstrove/internal/core/services/realtimeprice/kucoin"
+	"coinstrove/internal/core/services/realtimeprice/okx"
 	"coinstrove/repositories/apirepository"
 	"log"
 	"net/http"
@@ -61,6 +62,7 @@ func main() {
 		bitstamp.NewBitstampService(apiRepo, broadCastManager, quePublisher),
 		huobi.NewHuobiService(apiRepo, broadCastManager, quePublisher),
 		kucoin.NewKucoinService(apiRepo, broadCastManager, quePublisher),
+		okx.NewOkxService(apiRepo, broadCastManager, quePublisher),
 	}
 
 	// WebSocket Endpoints
