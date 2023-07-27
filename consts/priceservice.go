@@ -7,6 +7,14 @@ const (
 	BTC           = "BTC"
 	USDT          = "USDT"
 	BUSD          = "BUSD"
+	ADA           = "ADA"
+	DOGE          = "DOGE"
+	DOT           = "DOT"
+	LTC           = "LTC"
+	BCH           = "BCH"
+	XRP           = "XRP"
+	SOL           = "SOL"
+	LINK          = "LINK"
 )
 
 type EXCHANGE string
