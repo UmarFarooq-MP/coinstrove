@@ -21,6 +21,7 @@ services:
       - rabbitmq_go_net
     depends_on:
       - rabbitmq
+    restart: on-failure
 networks:
   rabbitmq_go_net:
     driver: bridge
