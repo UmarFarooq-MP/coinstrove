@@ -81,6 +81,183 @@ func GetKrakenPriceETH(resp interface{}) string {
 	return ""
 }
 
+func GetKrakenPriceADA(resp interface{}) string {
+	result, ok := resp.(map[string]interface{})
+	if !ok {
+		log.Println("GetKrakenPriceADA Error occurred while converting response into map")
+		return ""
+	}
+	if results, found := result["result"].(map[string]interface{}); found {
+		if adausdt, ok := results["ADAUSDT"].(map[string]interface{}); ok {
+			if a, ok := adausdt["a"].([]interface{}); ok {
+				if len(a) > 0 {
+					if price, ok := a[0].(string); ok {
+						return price
+					}
+				}
+			}
+		}
+	} else {
+		log.Print("Failed to extract price from KrakenPriceADA")
+		return ""
+	}
+	return ""
+}
+func GetKrakenPriceDOGE(resp interface{}) string {
+	result, ok := resp.(map[string]interface{})
+	if !ok {
+		log.Println("GetKrakenPriceDOGE Error occurred while converting response into map")
+		return ""
+	}
+	if results, found := result["result"].(map[string]interface{}); found {
+		if xdgusdt, ok := results["XDGUSDT"].(map[string]interface{}); ok {
+			if a, ok := xdgusdt["a"].([]interface{}); ok {
+				if len(a) > 0 {
+					if price, ok := a[0].(string); ok {
+						return price
+					}
+				}
+			}
+		}
+	} else {
+		log.Print("Failed to extract price from KrakenPriceDOGE")
+		return ""
+	}
+	return ""
+}
+func GetKrakenPriceDOT(resp interface{}) string {
+	result, ok := resp.(map[string]interface{})
+	if !ok {
+		log.Println("GetKrakenPriceDOT Error occurred while converting response into map")
+		return ""
+	}
+	if results, found := result["result"].(map[string]interface{}); found {
+		if dotusdt, ok := results["DOTUSDT"].(map[string]interface{}); ok {
+			if a, ok := dotusdt["a"].([]interface{}); ok {
+				if len(a) > 0 {
+					if price, ok := a[0].(string); ok {
+						return price
+					}
+				}
+			}
+		}
+	} else {
+		log.Print("Failed to extract price from KrakenPriceDOT")
+		return ""
+	}
+	return ""
+}
+func GetKrakenPriceLTC(resp interface{}) string {
+	result, ok := resp.(map[string]interface{})
+	if !ok {
+		log.Println("GetKrakenPriceLTC Error occurred while converting response into map")
+		return ""
+	}
+	if results, found := result["result"].(map[string]interface{}); found {
+		if ltcusdt, ok := results["LTCUSDT"].(map[string]interface{}); ok {
+			if a, ok := ltcusdt["a"].([]interface{}); ok {
+				if len(a) > 0 {
+					if price, ok := a[0].(string); ok {
+						return price
+					}
+				}
+			}
+		}
+	} else {
+		log.Print("Failed to extract price from KrakenPriceLTC")
+		return ""
+	}
+	return ""
+}
+func GetKrakenPriceBCH(resp interface{}) string {
+	result, ok := resp.(map[string]interface{})
+	if !ok {
+		log.Println("GetKrakenPriceBCH Error occurred while converting response into map")
+		return ""
+	}
+	if results, found := result["result"].(map[string]interface{}); found {
+		if bchusdt, ok := results["BCHUSDT"].(map[string]interface{}); ok {
+			if a, ok := bchusdt["a"].([]interface{}); ok {
+				if len(a) > 0 {
+					if price, ok := a[0].(string); ok {
+						return price
+					}
+				}
+			}
+		}
+	} else {
+		log.Print("Failed to extract price from KrakenPriceBCH")
+		return ""
+	}
+	return ""
+}
+func GetKrakenPriceXRP(resp interface{}) string {
+	result, ok := resp.(map[string]interface{})
+	if !ok {
+		log.Println("GetKrakenPriceXRP Error occurred while converting response into map")
+		return ""
+	}
+	if results, found := result["result"].(map[string]interface{}); found {
+		if xrpusdt, ok := results["XRPUSDT"].(map[string]interface{}); ok {
+			if a, ok := xrpusdt["a"].([]interface{}); ok {
+				if len(a) > 0 {
+					if price, ok := a[0].(string); ok {
+						return price
+					}
+				}
+			}
+		}
+	} else {
+		log.Print("Failed to extract price from KrakenPriceXRP")
+		return ""
+	}
+	return ""
+}
+func GetKrakenPriceSOL(resp interface{}) string {
+	result, ok := resp.(map[string]interface{})
+	if !ok {
+		log.Println("GetKrakenPriceSOL Error occurred while converting response into map")
+		return ""
+	}
+	if results, found := result["result"].(map[string]interface{}); found {
+		if solusdt, ok := results["SOLUSDT"].(map[string]interface{}); ok {
+			if a, ok := solusdt["a"].([]interface{}); ok {
+				if len(a) > 0 {
+					if price, ok := a[0].(string); ok {
+						return price
+					}
+				}
+			}
+		}
+	} else {
+		log.Print("Failed to extract price from KrakenPriceSOL")
+		return ""
+	}
+	return ""
+}
+func GetKrakenPriceLINK(resp interface{}) string {
+	result, ok := resp.(map[string]interface{})
+	if !ok {
+		log.Println("GetKrakenPriceLINK Error occurred while converting response into map")
+		return ""
+	}
+	if results, found := result["result"].(map[string]interface{}); found {
+		if linkusdt, ok := results["LINKUSDT"].(map[string]interface{}); ok {
+			if a, ok := linkusdt["a"].([]interface{}); ok {
+				if len(a) > 0 {
+					if price, ok := a[0].(string); ok {
+						return price
+					}
+				}
+			}
+		}
+	} else {
+		log.Print("Failed to extract price from KrakenPriceLINK")
+		return ""
+	}
+	return ""
+}
+
 // GetBitPayPrice  is a function which is parsing the response to fetch the price
 func GetBitPayPrice(resp interface{}) string {
 	results, ok := resp.(map[string]interface{})
