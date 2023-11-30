@@ -13,7 +13,7 @@ VNUM3=${CURRENT_VERSION_PARTS[2]}
 # Always set the tag to "latest"
 NEW_TAG="latest"
 echo "Updating to $NEW_TAG"
-
+#dummy
 # get current hash and see if it already has a tag
 GIT_COMMIT=`git rev-parse HEAD`
 NEEDS_TAG=`git describe --contains $GIT_COMMIT 2>/dev/null`
