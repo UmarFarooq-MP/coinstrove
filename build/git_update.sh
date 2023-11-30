@@ -21,7 +21,7 @@ fi
 echo "Current Version: $CURRENT_VERSION"
 
 # replace . with space so can split into an array
-CURRENT_VERSION_PARTS=(${CURRENT_VERSION//./ })
+CURRENT_VERSION_PARTS=(${CURRENT_VERSION// / })
 
 # get number parts
 VNUM1=${CURRENT_VERSION_PARTS[0]}
