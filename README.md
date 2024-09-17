@@ -50,6 +50,13 @@ To use the backend code for the Coinscience project, follow these steps:
 3. Run `docker-compose up -d` to up rabbitmttq in dockerize environment.
 4. Build and run the application using `go run cmd/main.go`.
 5. Try updating the mod file `go get -u ./...` if above does not work.
+6. To run locally you need rabbit mq which can be run on docker using these two commands
+    ~~~shell
+   docker network create rabbitmq_network
+   docker run -d --hostname queue --name rabbitmq --network rabbitmq_network -p 5672:5672 -p 15672:15672 rabbitmq:management
+   ~~~
+7. Also make sure to replace this line when running locally.
+   `quePublisher, err := publisher.NewRabbitMQPublisher("amqp://guest:guest@localhost:5672/")`
 
 ## API Endpoints
 WORK IN PROGRESS
