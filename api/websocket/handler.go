@@ -31,7 +31,6 @@ func NewHandler() *Handler {
 func (h *Handler) BroadCast(data domain.Response) {
 	h.Lock()
 	defer h.Unlock()
-	log.Printf("connected clients = %v", len(h.clients))
 	for client := range h.clients {
 		encodedData, err := json.Marshal(data)
 		if err != nil {

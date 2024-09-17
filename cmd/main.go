@@ -21,12 +21,14 @@ import (
 )
 
 func getPriceAfterFiveSeconds(priceService []ports.PriceService) {
-	ticker := time.NewTicker(5 * time.Second)
+	log.Printf("Starting To Fetch Latest Price")
+	ticker := time.NewTicker(7 * time.Second)
 	for _ = range ticker.C {
 		for _, value := range priceService {
 			go value.GetThePrice()
 		}
 	}
+	log.Printf("Fetch Price competed")
 }
 
 func startServer() {

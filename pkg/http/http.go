@@ -12,7 +12,6 @@ type Client struct {
 }
 
 func (c *Client) Get(url string) (interface{}, error) {
-
 	resp, err := c.client.R(). // Use R() to create a request.
 					Get(url)
 	if err != nil {
@@ -22,7 +21,7 @@ func (c *Client) Get(url string) (interface{}, error) {
 	var data interface{}
 	err = json.NewDecoder(resp.Body).Decode(&data)
 	if err != nil {
-		log.Println("Error while Decoding the response")
+		log.Printf("Error while Decoding the response of URL %s", url)
 		return nil, err
 	}
 	return data, nil
