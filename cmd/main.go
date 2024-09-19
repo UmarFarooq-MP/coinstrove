@@ -6,7 +6,6 @@ import (
 	"coinstrove/internal/core/publisher"
 	"coinstrove/internal/core/services/realtimeprice/binance"
 	"coinstrove/internal/core/services/realtimeprice/bitfinex"
-	"coinstrove/internal/core/services/realtimeprice/bitpay"
 	"coinstrove/internal/core/services/realtimeprice/bitstamp"
 	"coinstrove/internal/core/services/realtimeprice/coinbase"
 	gate_io "coinstrove/internal/core/services/realtimeprice/gate.io"
@@ -21,14 +20,16 @@ import (
 )
 
 func getPriceAfterFiveSeconds(priceService []ports.PriceService) {
-	log.Printf("Starting To Fetch Latest Price")
+
 	ticker := time.NewTicker(7 * time.Second)
 	for _ = range ticker.C {
+		log.Printf("Starting To Fetch Latest Price")
 		for _, value := range priceService {
 			go value.GetThePrice()
 		}
+		log.Printf("Fetch Price competed")
 	}
-	log.Printf("Fetch Price competed")
+
 }
 
 func startServer() {
@@ -59,7 +60,7 @@ func main() {
 		gate_io.NewGateIOService(apiRepo, broadCastManager, quePublisher),
 		kraken.NewKrakenService(apiRepo, broadCastManager, quePublisher),
 		coinbase.NewCoinBaseService(apiRepo, broadCastManager, quePublisher),
-		bitpay.NewBitPayService(apiRepo, broadCastManager, quePublisher),
+		//bitpay.NewBitPayService(apiRepo, broadCastManager, quePublisher),
 		bitfinex.NewBitfinexService(apiRepo, broadCastManager, quePublisher),
 		bitstamp.NewBitstampService(apiRepo, broadCastManager, quePublisher),
 		huobi.NewHuobiService(apiRepo, broadCastManager, quePublisher),
