@@ -1,6 +1,8 @@
 module coinstrove
 
-go 1.23
+go 1.22.0
+
+toolchain go1.23.1
 
 require (
 	github.com/gorilla/websocket v1.5.3
