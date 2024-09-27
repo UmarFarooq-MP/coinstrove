@@ -3,15 +3,20 @@ services:
   rabbitmq:
     image: rabbitmq:3-management-alpine
     container_name: 'rabbitmq'
-    hostname : queue
+    hostname: queue
     ports:
       - 5672:5672
       - 15672:15672
     volumes:
-      - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
-      - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+      - rabbitmq_data:/var/lib/rabbitmq/
+      - rabbitmq_log:/var/log/rabbitmq/
     networks:
       - rabbitmq_go_net
+    healthcheck:
+      test: ["CMD", "rabbitmqctl", "status"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
   datasvc:
     build: .
     hostname: dsvc
@@ -20,8 +25,12 @@ services:
     networks:
       - rabbitmq_go_net
     depends_on:
-      - rabbitmq
+      rabbitmq:
+        condition: service_healthy
     restart: on-failure
 networks:
   rabbitmq_go_net:
     driver: bridge
+volumes:
+  rabbitmq_data:
+  rabbitmq_log:
