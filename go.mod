@@ -1,6 +1,6 @@
 module coinstrove
 
-go 1.23
+go 1.25
 
 require (
 	github.com/gorilla/websocket v1.5.3
@@ -20,6 +20,7 @@ require (
 	github.com/quic-go/qpack v0.5.1 // indirect
 	github.com/quic-go/quic-go v0.47.0 // indirect
 	github.com/refraction-networking/utls v1.6.7 // indirect
+	github.com/shopspring/decimal v1.4.0 // indirect
 	go.uber.org/mock v0.4.0 // indirect
 	golang.org/x/crypto v0.27.0 // indirect
 	golang.org/x/exp v0.0.0-20240909161429-701f63a606c0 // indirect
